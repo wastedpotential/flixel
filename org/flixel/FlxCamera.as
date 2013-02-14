@@ -261,6 +261,23 @@ package org.flixel
 			_fill = new BitmapData(width,height,true,0);
 		}
 		
+		
+		public function resize(Width:int,Height:int, updateWorldBounds:Boolean=false):void {
+			//trace("FlxCamera :: resize "+Width+", "+Height);
+			width = Width;
+			height = Height;
+			bgColor = FlxG.bgColor;
+			_flashRect = new Rectangle(0, 0, width, height);			
+			var temp0:BitmapData = new BitmapData(width, height, false, _color);
+			temp0.copyPixels(buffer, temp0.rect, buffer.rect.topLeft);			
+			buffer.dispose();
+			_flashBitmap.bitmapData.dispose();			
+			buffer = temp0;
+			_flashBitmap.bitmapData = buffer;			 
+			_fill = new BitmapData(width, height, true, 0);
+			setBounds(0, 0, width, height, updateWorldBounds);
+		}	
+		
 		/**
 		 * Clean up memory.
 		 */

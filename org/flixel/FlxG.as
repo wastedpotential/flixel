@@ -28,7 +28,7 @@ package org.flixel
 		 * If you build and maintain your own version of flixel,
 		 * you can give it your own name here.
 		 */
-		static public var LIBRARY_NAME:String = "flixel";
+		static public var LIBRARY_NAME:String = "fullbrowserflixel";
 		/**
 		 * Assign a major version to your library.
 		 * Appears before the decimal in the console.
@@ -92,6 +92,28 @@ package org.flixel
 		 */
 		static public const BLACK:uint = 0xff000000;
 
+		/**
+		 * Maximum flixel buffer horizontal size change on a single render cycle. 
+		 * 0 = no resizing 
+		 * 99999 = immediate resizing
+		 * In game states, this number should probably not be > the width of your player.
+		 * Set this value during the create() function for your FlxState.
+		 */
+		static public var maxFrameDeltaX:int = 0;
+		
+		
+		/**
+		 * Maximum flixel buffer vertical size change on a single render cycle. 
+		 * 0 = no resizing 
+		 * 99999 = immediate resizing
+		 * In game states, this number should probably not be > the height of your player.
+		 * Set this value during the create() function for your FlxState.
+		 */
+		static public var maxFrameDeltaY:int = 0;
+		
+		static private var frameDeltaX:Number = 0;
+		static private var frameDeltaY:Number = 0;
+		
 		/**
 		 * Internal tracker for game object.
 		 */
@@ -232,6 +254,27 @@ package org.flixel
 		 * Internal storage system to prevent graphics from being used repeatedly in memory.
 		 */
 		static protected var _cache:Object;
+		
+		/**
+		 * For full-browser resizing, call this function at the beginning of your FlxState's update() function
+		 * Then, handle any repositioning of members based on new size. 
+		 */
+		static public function updateSize():void {
+			frameDeltaX = stage.stageWidth - width;
+			if (frameDeltaX < -1*maxFrameDeltaX) frameDeltaX = -1*maxFrameDeltaX;
+			if (frameDeltaX > maxFrameDeltaX) frameDeltaX = maxFrameDeltaX;
+			frameDeltaY = stage.stageHeight - height;
+			if (frameDeltaY < -1*maxFrameDeltaY) frameDeltaY = -1*maxFrameDeltaY;
+			if (frameDeltaY > maxFrameDeltaY) frameDeltaY = maxFrameDeltaY;
+			if (frameDeltaX != 0 || frameDeltaY != 0) {
+				width += frameDeltaX;	
+				height += frameDeltaY;	
+				if (camera) { //update the camera and the world bounds:				
+					camera.resize(width, height, true);
+				}
+			}
+		}
+		
 
 		static public function getLibraryName():String
 		{
