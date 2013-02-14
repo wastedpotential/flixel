@@ -1,3 +1,11 @@
+FULL-BROWSER FLIXEL
+This fork adds full-browser resizing capabilities to the Flixel Community version ofFlixel. This is for some projects 
+that I'm working on, so the stability of this repo is questionable - use at your 
+own risk! ;) 
+
+
+
+
 ABOUT FLIXEL
 =======================================================
 Flixel is an open source game-making library that is completely free for personal or commercial use. Written entirely in ActionScript 3 by Adam “Atomic” Saltsman, and designed to be used with free development tools, Flixel is easy to learn, extend and customize. Flixel has been used in hundreds of games, including IGF nominees, Adult Swim games, and avant-garde experiments. Many Flixel users make their first game ever in Flixel.
