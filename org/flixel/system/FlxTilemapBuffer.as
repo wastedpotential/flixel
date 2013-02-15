@@ -47,6 +47,12 @@ package org.flixel.system
 
 		protected var _pixels:BitmapData;	
 		protected var _flashRect:Rectangle;
+		
+		//========== added for resizing code: ==========
+		private var _tileWidth:Number;
+		private var _tileHeight:Number;
+		//========== added for resizing code: ==========
+		
 
 		/**
 		 * Instantiates a new camera-specific buffer for storing the visual tilemap data.
@@ -74,7 +80,28 @@ package org.flixel.system
 			height = _pixels.height;			
 			_flashRect = new Rectangle(0,0,width,height);
 			dirty = true;
+			
+			//========== added for resizing code: ==========
+			_tileWidth = TileWidth;
+			_tileHeight = TileHeight;
+			//========== added for resizing code: ==========
 		}
+		
+		
+		//========== added for resizing code: ==========			
+		public function update():void {
+			//trace("FlxTilemapBuffer :: update");
+			if (FlxG.camera) {
+				columns = FlxU.ceil(FlxG.camera.width / _tileWidth) + 1;
+				_pixels = new BitmapData(columns * _tileWidth, rows * _tileHeight, true, 0);
+				width = _pixels.width;
+				height = _pixels.height;			
+				_flashRect = new Rectangle(0,0,width,height);
+				dirty = true;
+			}
+		}
+		//========== added for resizing code: ==========
+		
 		
 		/**
 		 * Clean up memory.

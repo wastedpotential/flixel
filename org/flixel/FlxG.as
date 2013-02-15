@@ -99,7 +99,7 @@ package org.flixel
 		 * In game states, this number should probably not be > the width of your player.
 		 * Set this value during the create() function for your FlxState.
 		 */
-		static public var maxFrameDeltaX:int = 0;
+		static public var maxFrameDeltaX:uint = 0;
 		
 		
 		/**
@@ -109,7 +109,7 @@ package org.flixel
 		 * In game states, this number should probably not be > the height of your player.
 		 * Set this value during the create() function for your FlxState.
 		 */
-		static public var maxFrameDeltaY:int = 0;
+		static public var maxFrameDeltaY:uint = 0;
 		
 		static private var frameDeltaX:Number = 0;
 		static private var frameDeltaY:Number = 0;
@@ -260,12 +260,17 @@ package org.flixel
 		 * Then, handle any repositioning of members based on new size. 
 		 */
 		static public function updateSize():void {
-			frameDeltaX = stage.stageWidth - width;
-			if (frameDeltaX < -1*maxFrameDeltaX) frameDeltaX = -1*maxFrameDeltaX;
-			if (frameDeltaX > maxFrameDeltaX) frameDeltaX = maxFrameDeltaX;
-			frameDeltaY = stage.stageHeight - height;
-			if (frameDeltaY < -1*maxFrameDeltaY) frameDeltaY = -1*maxFrameDeltaY;
-			if (frameDeltaY > maxFrameDeltaY) frameDeltaY = maxFrameDeltaY;
+			frameDeltaX = frameDeltaY = 0;
+			if (maxFrameDeltaX > 0) {
+				frameDeltaX = stage.stageWidth - width;
+				if (frameDeltaX < -1*maxFrameDeltaX) frameDeltaX = -1*maxFrameDeltaX;
+				if (frameDeltaX > maxFrameDeltaX) frameDeltaX = maxFrameDeltaX;
+			}
+			if (maxFrameDeltaX > 0) {
+				frameDeltaY = stage.stageHeight - height;
+				if (frameDeltaY < -1*maxFrameDeltaY) frameDeltaY = -1*maxFrameDeltaY;
+				if (frameDeltaY > maxFrameDeltaY) frameDeltaY = maxFrameDeltaY;
+			}
 			if (frameDeltaX != 0 || frameDeltaY != 0) {
 				width += frameDeltaX;	
 				height += frameDeltaY;	
@@ -275,7 +280,14 @@ package org.flixel
 			}
 		}
 		
-
+		static public function get frameDeltaWidth():Number {
+			return frameDeltaX;
+		}
+		
+		static public function get frameDeltaHeight():Number {
+			return frameDeltaY;
+		}
+		
 		static public function getLibraryName():String
 		{
 			return FlxG.LIBRARY_NAME + " v" + FlxG.LIBRARY_MAJOR_VERSION + "." + FlxG.LIBRARY_MINOR_VERSION;
