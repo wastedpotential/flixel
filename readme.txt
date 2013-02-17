@@ -1,7 +1,5 @@
 FULL-BROWSER FLIXEL
-This fork adds full-browser resizing capabilities to the Flixel Community version ofFlixel. This is for some projects 
-that I'm working on, so the stability of this repo is questionable - use at your 
-own risk! ;) 
+This fork adds full-browser resizing capabilities to the Flixel Community version of Flixel. This is for some projects that I'm working on, so the stability of this repo is questionable - use at your own risk! ;) 
 
 
 
