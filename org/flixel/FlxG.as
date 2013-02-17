@@ -263,13 +263,13 @@ package org.flixel
 			frameDeltaX = frameDeltaY = 0;
 			if (maxFrameDeltaX > 0) {
 				frameDeltaX = stage.stageWidth - width;
-				if (frameDeltaX < -1*maxFrameDeltaX) frameDeltaX = -1*maxFrameDeltaX;
 				if (frameDeltaX > maxFrameDeltaX) frameDeltaX = maxFrameDeltaX;
+				if (frameDeltaX < -1*maxFrameDeltaX) frameDeltaX = -1*maxFrameDeltaX;				
 			}
-			if (maxFrameDeltaX > 0) {
+			if (maxFrameDeltaY > 0) {
 				frameDeltaY = stage.stageHeight - height;
-				if (frameDeltaY < -1*maxFrameDeltaY) frameDeltaY = -1*maxFrameDeltaY;
 				if (frameDeltaY > maxFrameDeltaY) frameDeltaY = maxFrameDeltaY;
+				if (frameDeltaY < -1*maxFrameDeltaY) frameDeltaY = -1*maxFrameDeltaY; 				
 			}
 			if (frameDeltaX != 0 || frameDeltaY != 0) {
 				width += frameDeltaX;	
