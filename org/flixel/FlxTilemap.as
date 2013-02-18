@@ -301,8 +301,8 @@ package org.flixel
 		override public function update():void
 		{
 			//========== added for resizing code: ==========
-			var i = 0;
-			var l = _buffers.length;
+			var i:int = 0;
+			var l:int = _buffers.length;
 			while(i < l) {
 				(_buffers[i++] as FlxTilemapBuffer).update();
 			}
