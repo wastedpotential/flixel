@@ -1,5 +1,6 @@
 package org.flixel
 {
+    import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.Graphics;
 	import flash.display.Sprite;
@@ -803,8 +804,7 @@ package org.flixel
 				var bitmap:Bitmap = new Graphic() as Bitmap;
 				if(bitmap == null)
 				{
-					FlxG.log("Error: " + FlxU.getClassName(Graphic) + " must extend flash.display.Bitmap.");
-					return FlxG.addBitmap(FlxSprite.ImgDefault, Reverse);
+                    throw new Error("Error: " + FlxU.getClassName(Graphic) + " must extend flash.display.Bitmap.");
 				}
 				
 				var pixels:BitmapData = bitmap.bitmapData;
