@@ -953,8 +953,43 @@ package org.flixel
 			if(health <= 0)
 				kill();
 		}
-		
-		/**
+
+
+        public function get myX():Number {
+            return x;
+        }
+
+        public function set myX(val:Number):void {
+            x = val;
+        }
+
+        public function get myY():Number {
+            return y;
+        }
+
+        public function set myY(val:Number):void {
+            y = val;
+        }
+
+        public function get myWidth():Number {
+            return width;
+        }
+
+        public function set myWidth(val:Number):void {
+            width = val;
+        }
+
+        public function get myHeight():Number {
+            return height;
+        }
+
+        public function set myHeight(val:Number):void {
+            height = val;
+        }
+
+
+
+        /**
 		 * The main collision resolution function in flixel.
 		 * 
 		 * @param	Object1 	Any <code>FlxObject</code>.
