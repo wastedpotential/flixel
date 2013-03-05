@@ -90,19 +90,19 @@ package org.flixel
 		/**
 		 * X position of the upper left corner of this object in world space.
 		 */
-		public var x:Number;
+		protected var _x:Number;
 		/**
 		 * Y position of the upper left corner of this object in world space.
 		 */
-		public var y:Number;
+		protected var _y:Number;
 		/**
 		 * The width of this object.
 		 */
-		public var width:Number;
+		protected var _width:Number;
 		/**
 		 * The height of this object.
 		 */
-		public var height:Number;
+		protected var _height:Number;
 
 		/**
 		 * Whether an object will move/alter position after a collision.
@@ -955,36 +955,36 @@ package org.flixel
 		}
 
 
-        public function get myX():Number {
-            return x;
+        public function get x():Number {
+            return _x;
         }
 
-        public function set myX(val:Number):void {
-            x = val;
+        public function set x(val:Number):void {
+            _x = val;
         }
 
-        public function get myY():Number {
-            return y;
+        public function get y():Number {
+            return _y;
         }
 
-        public function set myY(val:Number):void {
-            y = val;
+        public function set y(val:Number):void {
+            _y = val;
         }
 
-        public function get myWidth():Number {
-            return width;
+        public function get width():Number {
+            return _width;
         }
 
-        public function set myWidth(val:Number):void {
-            width = val;
+        public function set width(val:Number):void {
+            _width = val;
         }
 
-        public function get myHeight():Number {
-            return height;
+        public function get height():Number {
+            return _height;
         }
 
-        public function set myHeight(val:Number):void {
-            height = val;
+        public function set height(val:Number):void {
+            _height = val;
         }
 
 
