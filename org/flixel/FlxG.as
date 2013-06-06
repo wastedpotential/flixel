@@ -114,7 +114,9 @@ package org.flixel
 		
 		static private var frameDeltaX:Number = 0;
 		static private var frameDeltaY:Number = 0;
-		
+		static private var prevWidth:Number = 0;
+		static private var prevHeight:Number = 0;
+
 		/**
 		 * Internal tracker for game object.
 		 */
@@ -262,19 +264,22 @@ package org.flixel
 		 */
 		static public function updateSize():void {
 			frameDeltaX = frameDeltaY = 0;
-			if (maxFrameDeltaX > 0) {
-				frameDeltaX = stage.stageWidth - width;
-				if (frameDeltaX > maxFrameDeltaX) frameDeltaX = maxFrameDeltaX;
+            if (maxFrameDeltaX > 0) {
+				frameDeltaX = stage.stageWidth - prevWidth;
+                if (frameDeltaX > maxFrameDeltaX) frameDeltaX = maxFrameDeltaX;
 				if (frameDeltaX < -1*maxFrameDeltaX) frameDeltaX = -1*maxFrameDeltaX;				
 			}
 			if (maxFrameDeltaY > 0) {
-				frameDeltaY = stage.stageHeight - height;
+				frameDeltaY = stage.stageHeight - prevHeight;
 				if (frameDeltaY > maxFrameDeltaY) frameDeltaY = maxFrameDeltaY;
 				if (frameDeltaY < -1*maxFrameDeltaY) frameDeltaY = -1*maxFrameDeltaY; 				
 			}
-			if (frameDeltaX != 0 || frameDeltaY != 0) {
-				width += frameDeltaX;	
-				height += frameDeltaY;	
+            //trace(frameDeltaX);
+            if (frameDeltaX != 0 || frameDeltaY != 0) {
+				//width += frameDeltaX;
+				//height += frameDeltaY;
+                prevWidth = width;
+                prevHeight = height;
 				if (camera) { //update the camera and the world bounds:				
 					camera.resize(width, height, true);
 				}
@@ -1156,8 +1161,8 @@ package org.flixel
 		static internal function init(Game:FlxGame,Width:uint,Height:uint,Zoom:Number):void
 		{
 			FlxG._game = Game;
-			FlxG.width = Width;
-			FlxG.height = Height;
+			FlxG.width = prevWidth = Width;
+			FlxG.height = prevHeight = Height;
 			
 			FlxG.mute = false;
 			FlxG._volume = 0.5;
