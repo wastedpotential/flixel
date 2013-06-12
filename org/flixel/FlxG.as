@@ -263,6 +263,7 @@ package org.flixel
 		 * Then, handle any repositioning of members based on new size. 
 		 */
 		static public function updateSize():void {
+            //trace(stage.stageWidth);
 			frameDeltaX = frameDeltaY = 0;
             if (maxFrameDeltaX > 0) {
 				frameDeltaX = stage.stageWidth - prevWidth;
@@ -276,8 +277,9 @@ package org.flixel
 			}
             //trace(frameDeltaX);
             if (frameDeltaX != 0 || frameDeltaY != 0) {
-				//width += frameDeltaX;
-				//height += frameDeltaY;
+                //increase width/height by delta values (keeps it in maxDelta range):
+				width += frameDeltaX;
+				height += frameDeltaY;
                 prevWidth = width;
                 prevHeight = height;
 				if (camera) { //update the camera and the world bounds:				
